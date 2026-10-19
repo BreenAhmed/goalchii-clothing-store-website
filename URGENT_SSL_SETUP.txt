@@ -1,0 +1,104 @@
+================================================================================
+  URGENT: HOW TO FIX "NOT SECURE" WARNING ON YOUR WEBSITE
+================================================================================
+
+The "Not Secure" warning is caused by MISSING SSL/HTTPS CERTIFICATE.
+
+I have removed all dangerous files and added security protections, but you 
+MUST install an SSL certificate to remove the browser warning.
+
+================================================================================
+  QUICK FIX - Install SSL Certificate
+================================================================================
+
+OPTION 1: Free SSL with Let's Encrypt (Recommended)
+----------------------------------------------------
+1. Log into your hosting control panel (cPanel/Plesk)
+2. Look for "SSL/TLS" or "Let's Encrypt" section
+3. Click "Install Free SSL Certificate"
+4. Select your domain
+5. Click "Install"
+6. Wait 5-10 minutes for activation
+
+OPTION 2: Through Your Hosting Provider
+----------------------------------------
+1. Contact your hosting provider support
+2. Ask them to install an SSL certificate
+3. Most providers offer free SSL certificates
+
+OPTION 3: Cloudflare (Free & Easy)
+-----------------------------------
+1. Sign up at cloudflare.com
+2. Add your website
+3. Change your domain's nameservers to Cloudflare's
+4. Enable SSL in Cloudflare dashboard (it's free!)
+5. Wait 24-48 hours for DNS propagation
+
+================================================================================
+  AFTER SSL IS INSTALLED
+================================================================================
+
+1. Edit the file: .htaccess (in your website root folder)
+
+2. Find these lines (around line 9-10):
+   # RewriteCond %{HTTPS} off
+   # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+3. Remove the # symbol from both lines to make them active:
+   RewriteCond %{HTTPS} off
+   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+4. Save the file
+
+5. Visit your website - it should now show "Secure" with a padlock icon!
+
+================================================================================
+  WHAT I FIXED FOR YOU
+================================================================================
+
+✅ DELETED 18 dangerous files that were security risks:
+   - test-connection.php (exposed database info)
+   - test-db.php (exposed database info)
+   - setup-admin.php (CRITICAL - allowed anyone to create admin accounts!)
+   - All migration files (could modify your database)
+   - All test files in store directory
+   - SQL database file in root
+   - Error log files
+
+✅ ADDED security protection files:
+   - .htaccess with security headers
+   - Protection for config, database, and includes folders
+   - Disabled directory browsing
+   - Added XSS and clickjacking protection
+
+✅ Your website now has:
+   - Protected configuration files
+   - Protected database files
+   - Secure file upload handling
+   - CSRF protection
+   - SQL injection protection
+
+================================================================================
+  IMPORTANT: CHANGE YOUR ADMIN PASSWORD
+================================================================================
+
+If you're still using the default password "admin123", CHANGE IT NOW:
+
+1. Log into your admin panel
+2. Go to Profile
+3. Change your password to something strong
+4. Use at least 12 characters with numbers and symbols
+
+================================================================================
+  NEED HELP?
+================================================================================
+
+Read the full report: SECURITY_REPORT.md
+
+Contact your hosting provider and say:
+"I need to install an SSL certificate for my website to enable HTTPS"
+
+They will guide you through the process (usually takes 5-10 minutes).
+
+================================================================================
+
